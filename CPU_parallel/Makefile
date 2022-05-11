@@ -9,11 +9,8 @@ all: Integrate
 Integrate: $(OBJ)
 	$(CC) $(PTHREADFLAG) -o $@ $^
 
-#%.o: %.c
-#	$(CC) $(THREADFLAG) $(CFLAGS) -o $@ $<
-
 clean:
-	rm -rf $(OBJ) $(EXEC) $(OBJ:.o=.d)
+	rm $(OBJ) $(EXEC) $(OBJ:.o=.d)
 	rm Integrate
 
 -include $(OBJ:.o=.d)

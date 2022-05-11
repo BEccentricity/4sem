@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 	}
 	struct Integral integral = {.func = Func,
 								  .begin = 0,
-								  .end = 280000};
+								  .end = 100000};
 	double res = 0;
 	long long int k = get_num(argv[1]);
 
@@ -55,13 +55,12 @@ int main(int argc, char *argv[]) {
 //		return -1;
 //	}
 
-	double start = time(NULL); 
 
 	if (integral_calc(integral, k, &res) != SUCCESS) {
 		printf("ERROR");
 		return -2;
 	}
-	fprintf(stdout, "\n%f\n", res);
-	printf("\ntime : %lf\n", (time(NULL) - start));
+	fprintf(stdout, "\nresult = %f\n", res);
+	//printf("\ntime : %lf\n", (time(NULL) - start));
 	return 0;
 }
