@@ -97,6 +97,11 @@ void list_test_foreach() {
 
 	TEST_CONDITION(list_foreach(list, list_foreach_sum, &sum) == 0)
 	TEST_CONDITION(sum = 0x21)
+
+	list_delete(list);
+	node_delete(node[0]);
+	node_delete(node[1]);
+	node_delete(node[2]);
 }
 
 void list_test_allocs() {
