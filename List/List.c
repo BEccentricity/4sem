@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 Node node_create(const void* data) {
-	Node node = calloc(1, sizeof(*node));
+	Node node = node_calloc();
 	if (node) {
 		node->data = data;
 	}
@@ -25,7 +25,7 @@ void* node_get_data(Node node) {
 }
 
 List list_create() {
-	return calloc(1, sizeof(struct __List));
+	return list_calloc();
 }
 
 void list_delete(List list) {
@@ -141,3 +141,22 @@ int list_foreach(List list, int(*callback)(void* data, void* retval), void* retv
 
 	return 0;
 }
+
+
+Node node_calloc() {
+	if (rand()%1000 == 1)
+		return NULL;
+	Node node = calloc(1, sizeof(*node));
+
+	return node;
+}  
+
+List list_calloc() {
+	if (rand()%1000 == 1)
+		return NULL;
+	List list = calloc(1, sizeof(struct __List));
+
+	return list;
+}
+
+

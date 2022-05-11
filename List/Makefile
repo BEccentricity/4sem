@@ -1,27 +1,27 @@
 HDIRS = headers
 SRC = main.c List.c test.c
 
-OBJ=$(notdir $(patsubst %.c,%.o,$(SRC)))
+OBJ=$(patsubst %.c,%.o,$(SRC))
 
 VPATH=../
 
 CFLAGS=--coverage -Wall -Wextra -MMD $(addprefix -I,$(HDIRS))
 
-PHONY: clean test valgrind coverage
+PHONY: test valgrind coverage clean
 
-test: test-bin
-	./test-bin
+test: code
+	./code
 
-valgrind: test-bin
-	valgrind ./test-bin
+valgrind: code
+	valgrind ./code
 
-test-bin: $(OBJ)
-	gcc -o test-bin --coverage $^
+code: $(OBJ)
+	gcc -o code --coverage $^
 
 coverage: test
-	gcov $(notdir $(patsubst %.gcda,%.c,$(SRC)))
+	gcov $(patsubst %.gcda,%.c,$(SRC))
 
 clean:
-	rm -f *.o *.d *.gcno *.gcda *.gcov test-bin
+	rm *.o *.d *.gcno *.gcda *gcov code
 	
 include $(wildcard *.d)

@@ -14,6 +14,8 @@ struct __List {
 typedef struct __List* List;
 typedef struct __Node* Node;
 
+List list_calloc();
+Node node_calloc(); 
 Node node_create(const void* data);
 void node_delete(Node node);
 void* node_get_data(Node node);

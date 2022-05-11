@@ -97,5 +97,19 @@ void list_test_foreach() {
 
 	TEST_CONDITION(list_foreach(list, list_foreach_sum, &sum) == 0)
 	TEST_CONDITION(sum = 0x21)
+}
+
+void list_test_allocs() {
+	List list;
+	Node node;
+	for (int i = 0; i < 10000; ++i) {
+		node = node_create ((void*) 0xDEAD);
+		if (node != NULL) 
+			node_delete(node);
+
+		list = list_create();
+		if(list != NULL)
+			list_delete(list);
+	}
 
 }
