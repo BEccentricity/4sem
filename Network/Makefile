@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -c -MD -g -Wall
+CFLAGS = -c -MD -g -Wall -std=gnu99
 THREADFLAG = -pthread
 
 INC_DIR = ./includes

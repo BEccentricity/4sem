@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "Input Error");
 		return 0;
 	}
-	if (strcmp(argv[1], "client") == 0) {
+	if (strcmp(argv[1], "c") == 0) {
 		if (StartSideNode() != DERROR_OK) {
 			fprintf(stderr, "==============================================================");
 			fprintf(stderr, "\n\t\t\tMAIN NODE ERROR\n");
