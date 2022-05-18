@@ -9,7 +9,7 @@ INC = -I$(INC_DIR)
 
 SRC = main.c $(SRC_DIR)/DistributionNetwork.c $(SRC_DIR)/IntegralCalculator.c $(SRC_DIR)/ParseInfo.c
 OBJ = $(SRC:.c=.o)
-EXEC = start.out
+EXEC = code
 
 all: $(EXEC)
 
