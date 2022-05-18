@@ -5,7 +5,7 @@ OBJ=$(patsubst %.c,%.o,$(SRC))
 
 VPATH=../
 
-CFLAGS=--coverage -Wall -Wextra -MMD $(addprefix -I,$(HDIRS))
+CFLAGS=--coverage -Wall -Wextra -MMD $(HDIRS)
 
 PHONY: test valgrind coverage clean
 
