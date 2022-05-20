@@ -18,8 +18,6 @@ struct CalculateInfo_t {
     size_t numUsedThreads;
 };
 
-//Select где сервер ждет ответа от пользователей, keeplaive прочитать что это такое
-
 //-------------------------------------------Static Functions---------------------------------------
 static int FindAndConnectComputers_(struct Connection_t* connections, size_t numComputers);
 static double DistributionCalculation_(struct Integral_t integral, size_t numComputers, size_t numThreads,
@@ -219,7 +217,6 @@ static int FindAndConnectComputers_(struct Connection_t* connections, size_t num
 
 static double DistributionCalculation_(struct Integral_t integral, size_t numComputers, size_t numThreads,
                                        struct Connection_t *connection) {
-    assert(connection);
     assert(numThreads > 0);
     assert(numComputers > 0);
 
@@ -236,7 +233,11 @@ static double DistributionCalculation_(struct Integral_t integral, size_t numCom
         }
         return res;
     }
+
     assert(connection);
+    assert(numThreads > 0);
+    assert(numComputers > 0);
+
     calculateInfos = calloc(numComputers, sizeof(struct CalculateInfo_t));
     double dataStep = (integral.end  - integral.begin) / numComputers;
     struct ComputerInfo_t thisComputerInfo = {};

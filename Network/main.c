@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         if (StartSideNode() != DERROR_OK) {
             fprintf(stderr, "==============================================================");
             fprintf(stderr, "\n\t\t\tMAIN NODE ERROR\n");
-            fprintf(stderr, "==============================================================");
+            fprintf(stderr, "==============================================================\n");
             return -1;
         }
     } else {
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
         if (StartMainNode(Read_Number_from_Text(argv[3]), Read_Number_from_Text(argv[2]), integral, &res) != DERROR_OK) {
             fprintf(stderr, "==============================================================");
             fprintf(stderr, "\n\t\t\tCLIENT NODE ERROR\n");
-            fprintf(stderr, "==============================================================");
+            fprintf(stderr, "==============================================================\n");
             return -1;
         }
         printf("\n[  %f  ]\n", res);
