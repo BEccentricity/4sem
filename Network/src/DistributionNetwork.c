@@ -239,7 +239,7 @@ static double DistributionCalculation_(struct Integral_t integral, size_t numCom
     assert(numComputers > 0);
 
     calculateInfos = calloc(numComputers, sizeof(struct CalculateInfo_t));
-    double dataStep = (integral.end  - integral.begin) / numComputers;
+    double dataStep = (integral.end  - integral.begin) / numThreads;
     struct ComputerInfo_t thisComputerInfo = {};
     coresInfo = GetCoresInfo(&thisComputerInfo);
 
@@ -272,12 +272,15 @@ static double DistributionCalculation_(struct Integral_t integral, size_t numCom
 //    calculateInfos[numComputers - 1].integral.func = integral.func;
 //    calculateInfos[numComputers - 1].numUsedThreads = numThreads;
 
-
-    for (size_t itComputer = 0; itComputer < numComputers; ++itComputer) {
-        calculateInfos[itComputer].integral.begin = integral.begin + itComputer * dataStep;
-        calculateInfos[itComputer].integral.end = integral.begin + (itComputer + 1) * dataStep;
-        calculateInfos[itComputer].integral.func = integral.func;
-    }
+    while(numThreads != 0)
+        for (size_t itComputer = 0; itComputer < numComputers; ++itComputer) {
+            calculateInfos[itComputer].integral.begin = integral.begin + itComputer * dataStep;
+            calculateInfos[itComputer].integral.end = integral.begin + (itComputer + 1) * dataStep;
+            calculateInfos[itComputer].integral.func = integral.func;
+            if(numThreads == 0) {
+                break;
+            }
+        }
 
     while(numThreads != 0) {
         for (size_t itComputer = 0; itComputer < numComputers; ++itComputer) {
