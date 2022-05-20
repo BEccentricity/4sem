@@ -10,9 +10,9 @@ int main(int argc, char** argv) {
     }
     if (strcmp(argv[1], "-c") == 0) {
         if (StartSideNode() != DERROR_OK) {
-            fprintf(stderr, "==============================================================");
-            fprintf(stderr, "\n\t\t\tMAIN NODE ERROR\n");
-            fprintf(stderr, "==============================================================\n");
+            fprintf(stderr, "##############################################################");
+            fprintf(stderr, "\n\t\t\tserver error\n");
+            fprintf(stderr, "##############################################################\n");
             return -1;
         }
     } else {
@@ -26,9 +26,9 @@ int main(int argc, char** argv) {
                                       .func = func};
 
         if (StartMainNode(Read_Number_from_Text(argv[3]), Read_Number_from_Text(argv[2]), integral, &res) != DERROR_OK) {
-            fprintf(stderr, "==============================================================");
-            fprintf(stderr, "\n\t\t\tCLIENT NODE ERROR\n");
-            fprintf(stderr, "==============================================================\n");
+            fprintf(stderr, "##############################################################");
+            fprintf(stderr, "\n\t\t\tclient error\n");
+            fprintf(stderr, "##############################################################\n");
             return -1;
         }
         printf("\n[  %f  ]\n", res);
