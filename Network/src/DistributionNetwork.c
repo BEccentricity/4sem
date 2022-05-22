@@ -283,13 +283,14 @@ static double DistributionCalculation_(struct Integral_t integral, size_t numCom
         }
     }
     calculateInfos[0].integral.begin = integral.begin;
-    calculateInfos[0].integral.end = integral.begin + calculateInfos[0].numUsedThreads * dataStep;
-    while(numThreads != 0)
-        for (size_t itComputer = 1; itComputer < numComputers; ++itComputer) {
-            calculateInfos[itComputer].integral.begin = calculateInfos[itComputer - 1].integral.end;
-            calculateInfos[itComputer].integral.end = integral.begin + calculateInfos[itComputer].numUsedThreads * dataStep;
-            calculateInfos[itComputer].integral.func = integral.func;
-        }
+    calculateInfos[0].integral.end = integral.begin + (calculateInfos[0].numUsedThreads) * dataStep;
+    fprintf(stderr,"%lf , %lf\n    %lu \n", calculateInfos[0].integral.begin, calculateInfos[0].integral.end, calculateInfos[0].numUsedThreads);
+     
+    for (size_t itComputer = 1; itComputer < numComputers; ++itComputer) {
+        calculateInfos[itComputer].integral.begin = calculateInfos[itComputer - 1].integral.end;
+        calculateInfos[itComputer].integral.end = calculateInfos[itComputer].integral.begin + calculateInfos[itComputer].numUsedThreads * dataStep;
+        calculateInfos[itComputer].integral.func = integral.func;
+    }
 
 
     double res = 0.0;
