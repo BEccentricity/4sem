@@ -284,7 +284,6 @@ static double DistributionCalculation_(struct Integral_t integral, size_t numCom
     }
     calculateInfos[0].integral.begin = integral.begin;
     calculateInfos[0].integral.end = integral.begin + (calculateInfos[0].numUsedThreads) * dataStep;
-    fprintf(stderr,"%lf , %lf\n    %lu \n", calculateInfos[0].integral.begin, calculateInfos[0].integral.end, calculateInfos[0].numUsedThreads);
      
     for (size_t itComputer = 1; itComputer < numComputers; ++itComputer) {
         calculateInfos[itComputer].integral.begin = calculateInfos[itComputer - 1].integral.end;
